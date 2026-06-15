@@ -21,7 +21,7 @@ const slides = [
   }
 ]
 
-export default function Hero() {
+export default function Hero({ onBookClick }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Hero() {
             <p key={`desc-${currentSlide}`}>{slides[currentSlide].description}</p>
           )}
           <div className="hero-buttons">
-            <a href="#cta" className="btn-primary" id="hero-cta-primary">
+            <a href="#" onClick={onBookClick} className="btn-primary" id="hero-cta-primary">
               Online Consultation
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>

@@ -1,4 +1,4 @@
-export default function CtaSection() {
+export default function CtaSection({ onBookClick }) {
   return (
     <section className="cta-section section-padding" id="cta">
       <div className="container">
@@ -8,9 +8,8 @@ export default function CtaSection() {
           Transform your family's health and bond through fitness today!
         </p>
         <a
-          href="https://app.pranacare.co.in/apt/home?returnUrl=%2Fbook-appointment%2F58&source=wellness"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          onClick={onBookClick}
           className="btn-cta"
           id="cta-book-now"
         >

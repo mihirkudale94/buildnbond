@@ -16,10 +16,6 @@ export default function Footer() {
           <div className="footer-grid">
             {/* Brand Column */}
             <div className="footer-about">
-              <div className="footer-brand">
-                <div className="brand-icon">B</div>
-                Build N' <span>Bond</span>
-              </div>
               <p>
                 Build N' Bond – Fitness Center is a professional fitness training center
                 for your little one. Make your little one your partner in workout with

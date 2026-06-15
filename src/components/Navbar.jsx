@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Navbar() {
+export default function Navbar({ onBookClick }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -20,8 +20,9 @@ export default function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="main-nav">
         <div className="container">
           <a href="#" className="navbar-brand" id="brand-logo">
-            <div className="brand-icon">B</div>
-            <div className="brand-text">Build N' <span>Bond</span></div>
+            <div className="navbar-logo-container">
+              <img src="/images/logo.jpg" alt="Build N' Bond" className="navbar-logo" />
+            </div>
           </a>
 
           <div className={`nav-links ${menuOpen ? 'open' : ''}`} id="nav-links">
@@ -30,8 +31,9 @@ export default function Navbar() {
             <a href="#how-we-work" onClick={closeMenu}>How We Work</a>
             <a href="#consultants" onClick={closeMenu}>Our Team</a>
             <a href="#contact" onClick={closeMenu}>Contact</a>
-            <a href="#cta" onClick={closeMenu} className="nav-cta">Book Now</a>
+            <a href="#" onClick={(e) => { closeMenu(); onBookClick(e); }} className="nav-cta">Book Now</a>
           </div>
+
 
           <button
             className={`mobile-menu-btn ${menuOpen ? 'open' : ''}`}
