@@ -1,12 +1,40 @@
 import { useState } from 'react'
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(`Thank you for your enquiry! We'll reach out to ${email} soon.`)
-    setEmail('')
+    setLoading(true)
+    
+    // Simulate API submission
+    setTimeout(() => {
+      setLoading(false)
+      setSubmitted(true)
+      console.log('Enquiry Submitted:', formData)
+      
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      })
+      
+      // Reset success state after a few seconds
+      setTimeout(() => setSubmitted(false), 5000)
+    }, 1000)
   }
 
   return (
@@ -68,35 +96,81 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Join Us Column */}
+            {/* Quick Links Column */}
             <div className="footer-col">
-              <h3>Join With Us</h3>
-              <p style={{ marginBottom: '1rem', fontSize: '0.95rem' }}>
-                Thank you for visting us.
-              </p>
-              <div className="footer-newsletter">
-                <form onSubmit={handleSubmit} className="input-group">
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    id="footer-email-input"
-                  />
-                  <button type="submit" id="footer-enquiry-btn">Enquiry</button>
-                </form>
-              </div>
+              <h3>Quick Links</h3>
+              <ul className="footer-links-list">
+                <li><a href="#home">→ Home</a></li>
+                <li><a href="#services">→ Services</a></li>
+                <li><a href="#how-we-work">→ How We Work</a></li>
+                <li><a href="#consultants">→ Our Team</a></li>
+              </ul>
+            </div>
 
-              <div style={{ marginTop: '1.5rem' }}>
-                <h3 style={{ marginTop: '1.5rem' }}>Quick Links</h3>
-                <ul>
-                  <li><a href="#home">→ Home</a></li>
-                  <li><a href="#services">→ Services</a></li>
-                  <li><a href="#how-we-work">→ How We Work</a></li>
-                  <li><a href="#consultants">→ Our Team</a></li>
-                </ul>
-              </div>
+            {/* Quick Enquiry Column */}
+            <div className="footer-col">
+              <h3>Quick Enquiry</h3>
+              <p style={{ marginBottom: '1rem', fontSize: '0.95rem' }}>
+                Have questions? Send us a message.
+              </p>
+              {submitted ? (
+                <div className="enquiry-success-message">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="success-icon">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Thank you! We will get back to you shortly.</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="footer-enquiry-form">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      id="enquiry-name"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      id="enquiry-email"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      id="enquiry-phone"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <textarea
+                      name="message"
+                      placeholder="Your Message/Enquiry"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows="2"
+                      required
+                      id="enquiry-message"
+                    ></textarea>
+                  </div>
+                  <button type="submit" className="btn-enquiry-submit" disabled={loading}>
+                    {loading ? 'Sending...' : 'Send Enquiry'}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

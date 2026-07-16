@@ -29,7 +29,9 @@ export default function Navbar({ onBookClick }) {
             <a href="#home" onClick={closeMenu} className="active">Home</a>
             <a href="#services" onClick={closeMenu}>Services</a>
             <a href="#how-we-work" onClick={closeMenu}>How We Work</a>
+            <a href="#packages" onClick={closeMenu}>Packages</a>
             <a href="#consultants" onClick={closeMenu}>Our Team</a>
+            <a href="#dieticians" onClick={closeMenu}>Dieticians</a>
             <a href="#contact" onClick={closeMenu}>Contact</a>
             <a href="#" onClick={(e) => { closeMenu(); onBookClick(e); }} className="nav-cta">Book Now</a>
           </div>

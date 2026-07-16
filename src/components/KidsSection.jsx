@@ -155,7 +155,7 @@ export default function KidsSection() {
         <div className="kids-grid">
           <div className="kids-video animate-in">
             <div className="video-thumbnail-container" onClick={() => setIsModalOpen(true)}>
-              <img src="/images/fun_fitness.png" alt="Build N Bond Kids Workout" />
+              <img src="/images/video_thumbnail.png" alt="Build N Bond Kids Workout" />
               <div className="play-overlay">
                 <div className="play-icon-circle">
                   <svg viewBox="0 0 24 24" width="36" height="36" fill="white">
